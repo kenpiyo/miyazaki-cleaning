@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サービス一覧 - 宮崎クリーニング社</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'メイリオ', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            color: #333;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(24, 180, 196, 0.1);
+            border-bottom: 3px solid #18b4c4;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #18b4c4;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .phone {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #18b4c4;
+        }
+
+        .hours {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        nav {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-content a {
+            display: block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-content a:hover, .nav-content a.active {
+            background-color: #f8fdff;
+            color: #18b4c4;
+            border-bottom: 3px solid #18b4c4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, #18b4c4 0%, #169fb0 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section:nth-child(even) {
+            background-color: #fafffe;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #18b4c4;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #18b4c4;
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(24, 180, 196, 0.2);
+            border: 2px solid #18b4c4;
+        }
+
+        .service-card.featured {
+            border: 2px solid #18b4c4;
+            background: linear-gradient(135deg, #f8fdff, #e6f9fc);
+        }
+
+        .service-card.featured::before {
+            content: '人気';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #18b4c4;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #18b4c4;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features li {
+            padding: 0.3rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #18b4c4;
+            font-weight: bold;
+        }
+
+        .price-info {
+            background: #18b4c4;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .price-range {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .special-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .special-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .special-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(24, 180, 196, 0.2);
+            border: 2px solid #18b4c4;
+        }
+
+        .special-header {
+            background: linear-gradient(135deg, #18b4c4, #169fb0);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .special-header h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .special-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .special-content {
+            padding: 1.5rem;
+        }
+
+        .special-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .special-price {
+            background: #f8fdff;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #18b4c4;
+            margin-bottom: 1rem;
+        }
+
+        .special-price-title {
+            font-weight: 600;
+            color: #18b4c4;
+            margin-bottom: 0.5rem;
+        }
+
+        .coin-laundry {
+            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .coin-laundry h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .coin-laundry-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .laundry-section h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .laundry-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .laundry-item {
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .warning-note {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .warning-note h4 {
+            color: #856404;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .warning-note p {
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #18b4c4;
+            font-weight: 600;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #18b4c4;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #555;
+            margin-top: 2rem;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .nav-content {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-content a {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .special-services {
+                grid-template-columns: 1fr;
+            }
+
+            .coin-laundry-content {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <span style="width: 40px; height: 40px; background: #18b4c4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">✨</span>
+                    宮崎クリーニング社
+                </span>
+            </div>
+            <div class="contact-info">
+                <div class="phone">📞 276-2402</div>
+                <div class="hours">営業時間: 7:30-19:00 (日祝定休)</div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="index.html">ホーム</a>
+            <a href="services.html" class="active">サービス</a>
+            <a href="price.html">料金表</a>
+            <a href="index.html#news">お知らせ</a>
+            <a href="index.html#faq">よくある質問</a>
+            <a href="stores.html">店舗一覧</a>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>サービス一覧</h1>
+            <p>お客様のあらゆるニーズにお応えする、充実のクリーニングサービス</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">基本クリーニングサービス</h2>
+            <div class="services-grid">
+                <div class="service-card featured">
+                    <div class="service-icon">🧴</div>
+                    <h3>ドライクリーニング</h3>
+                    <p>水を使わない専門的なクリーニング技術で、デリケートな衣類も安心してお任せください。</p>
+                    <ul class="service-features">
+                        <li>型崩れを防ぐ専門技術</li>
+                        <li>風合いを保持したまま洗浄</li>
+                        <li>油性汚れに効果的</li>
+                        <li>高級素材も安心対応</li>
+                    </ul>
+                    <div class="price-info">
+                        <div class="price-range">スーツ上下 ¥1,500〜</div>
+                        <div class="price-note">素材により料金が異なります</div>
+                    </div>
+                </div>
+
+                <div class="service-card featured">
+                    <div class="service-icon">👔</div>
+                    <h3>Yシャツ専門クリーニング</h3>
+                    <p>毎日着用するワイシャツを、プロの技術でパリッと美しく仕上げます。</p>
+                    <ul class="service-features">
+                        <li>酵素低温洗浄＋漂白高温洗浄の2度洗い</li>
+                        <li>当社オリジナル糊を使用</li>
+                        <li>バツグンの爽快感で汗をかいてもにおわない</li>
+                        <li>ボタン修理・付け替え無料</li>
+                        <li>ハンガーリサイクル対応</li>
+                    </ul>
+                    <div class="price-info">
+                        <div class="price-range">立体仕上げ ¥154 / たたみ ¥198</div>
+                        <div class="price-note">皺取り加工 +¥40</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💧</div>
+                    <h3>汗抜き加工</h3>
+                    <p>通常のドライクリーニングでは落とせない汗や水溶性の汚れをしっかり除去します。</p>
+                    <ul class="service-features">
+                        <li>カビや黄ばみから衣類を守る</li>
+                        <li>汗やタバコのにおいをスッキリ解消</li>
+                        <li>水溶性汚れを専用技術で除去</li>
+                        <li>風合いと爽やかな肌触りを実現</li>
+                    </ul>
+                    <div class="price-info">
+                        <div class="price-range">通常料金 + 加工料</div>
+                        <div class="price-note">詳しくはお問い合わせください</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🧽</div>
+                    <h3>シミ抜きサービス</h3>
+                    <p>基本的なシミ抜きは無料！諦めていたシミも専門技術で蘇らせます。</p>
+                    <ul class="service-features">
+                        <li>油性・水性の通常シミは無料</li>
+                        <li>古いシミ・黄変シミは有料対応</li>
+                        <li>納期3日でより丁寧に対応</li>
+                        <li>事前相談で最適な方法をご提案</li>
+                    </ul>
+                    <div class="price-info">
+                        <div class="price-range">基本シミ抜き 無料</div>
+                        <div class="price-note">特殊シミ：1箇所 ¥300〜</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>防虫・防ダニ加工</h3>
+                    <p>大切な衣類を虫食いから守る、食感タイプの防虫加工サービスです。</p>
+                    <ul class="service-features">
+                        <li>害虫実験殺虫率94.2%の実績</li>
+                        <li>直接衣類に加工を施すので効果持続</li>
+                        <li>実用性・安全性・風合いを重視</li>
+                        <li>温度・湿度・汚れの3要素を管理</li>
+                    </ul>
+                    <div class="price-info">
+                        <div class="price-range">通常料金 + 加工料</div>
+                        <div class="price-note">衣類の種類により料金が異なります</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛏️</div>
+                    <h3>布団・毛布クリーニング</h3>
+                    <p>ご家庭では洗えない大型寝具も、専用設備でしっかりクリーニングいたします。</p>
+                    <ul class="service-features">
+                        <li>ダニや汚れを徹底除去</li>
+                        <li>清潔でふかふかの仕上がり</li>
+                        <li>抗菌・防臭加工も対応</li>
+                        <li>宅配サービス利用可能</li>
+                    </ul>
+                    <div class="price-info">
+                        <div class="price-range">布団(S) ¥4,500 / 毛布 ¥1,200</div>
+                        <div class="price-note">サイズにより料金が異なります</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">特殊クリーニングサービス</h2>
+            <div class="special-services">
+                <div class="special-card">
+                    <div class="special-header">
+                        <div class="special-icon">👶</div>
+                        <h3>チャイルドシートクリーニング</h3>
+                        <p>大切なお子様のために、清潔で安心な環境を</p>
+                    </div>
+                    <div class="special-content">
+                        <div class="special-description">
+                            各パーツを1つ1つ分解して殺菌洗浄・抗菌洗浄を実施。高温スチーム洗浄機で汚れを徹底的に落とし、お子様が安心してご利用いただけるよう、衛生面も万全です。
+                        </div>
+                        <div class="special-price">
+                            <div class="special-price-title">料金表</div>
+                            <div>ジュニアシート: ¥3,000（税抜）</div>
+                            <div>チャイルドシート: ¥4,000（税抜）</div>
+                            <div>ベビーカー: ¥5,500（税抜）</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="special-card">
+                    <div class="special-header">
+                        <div class="special-icon">🧸</div>
+                        <h3>ぬいぐるみクリーニング</h3>
+                        <p>思い出のぬいぐるみを清潔に蘇らせます</p>
+                    </div>
+                    <div class="special-content">
+                        <div class="special-description">
+                            お気に入りのぬいぐるみや思い出がたくさん詰まったぬいぐるみも、ダニや雑菌をしっかり除去。小さなお子様にも清潔で安心してお使いいただけます。
+                        </div>
+                        <div class="special-price">
+                            <div class="special-price-title">サイズ別料金</div>
+                            <div>10cmまで: ¥630</div>
+                            <div>20cmまで: ¥1,260</div>
+                            <div>30cmまで: ¥1,890</div>
+                            <div>40cmまで: ¥2,520</div>
+                            <div>50cmまで: ¥3,150</div>
+                            <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">
+                                ※以降10cm増すごとに¥630追加
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="coin-laundry">
+                <h3>🏠 大型コインランドリー</h3>
+                <p>布団からカーペットまで、ジャブジャブ洗える大型設備完備</p>
+                
+                <div class="coin-laundry-content">
+                    <div class="laundry-section">
+                        <h4>✅ お洗濯におすすめ</h4>
+                        <div class="laundry-items">
+                            <span class="laundry-item">夏布団</span>
+                            <span class="laundry-item">こたつ布団</span>
+                            <span class="laundry-item">毛織の毛布</span>
+                            <span class="laundry-item">カーテン</span>
+                            <span class="laundry-item">羽毛布団</span>
+                            <span class="laundry-item">カーペット</span>
+                        </div>
+                    </div>
+                    
+                    <div class="laundry-section">
+                        <h4>❌ 洗わない方が良いもの</h4>
+                        <div class="laundry-items">
+                            <span class="laundry-item">和布団</span>
+                            <span class="laundry-item">羊毛布団</span>
+                            <span class="laundry-item">水洗い不可品</span>
+                            <span class="laundry-item">ウール製品</span>
+                            <span class="laundry-item">皮革類</span>
+                        </div>
+                    </div>
+                    
+                    <div class="laundry-section">
+                        <h4>⚠️ 乾燥しない方が良いもの</h4>
+                        <div class="laundry-items">
+                            <span class="laundry-item">のりづけ品</span>
+                            <span class="laundry-item">湿り止め付きカーペット</span>
+                            <span class="laundry-item">油汚れひどいもの</span>
+                            <span class="laundry-item">ドライマーク品</span>
+                            <span class="laundry-item">ナイロン製品</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-note">
+                <h4>⚠️ ご利用前にご確認ください</h4>
+                <p>
+                    大型コインランドリーをご利用の際は、事前に洗濯表示をご確認ください。<br>
+                    不明な点がございましたら、お気軽にスタッフまでお声かけください。<br>
+                    適切でない使用による損傷については責任を負いかねますので、予めご了承ください。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>
+                    <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <span style="width: 30px; height: 30px; background: #18b4c4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">✨</span>
+                        宮崎クリーニング社
+                    </span>
+                </h3>
+                <p>〒924-0000<br>
+                石川県白山市徳丸町427-1<br>
+                TEL: 276-2402<br>
+                営業: 平日・土曜 7:30-19:00（日祝定休）</p>
+            </div>
+            <div class="footer-section">
+                <h3>サービス</h3>
+                <p><a href="#services">ドライクリーニング</a><br>
+                <a href="#services">ワイシャツクリーニング</a><br>
+                <a href="#services">布団クリーニング</a><br>
+                <a href="#services">革製品クリーニング</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>お客様サポート</h3>
+                <p><a href="index.html#faq">よくある質問</a><br>
+                <a href="price.html">料金表</a><br>
+                <a href="index.html#news">お知らせ</a><br>
+                お問い合わせ<br>
+                クリーニング事故賠償保険加入店</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 宮崎クリーニング社. All rights reserved. | 全国クリーニング生活衛生同業組合連合会加盟店</p>
+        </div>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // サービスカードのアニメーション
+        window.addEventListener('load', function() {
+            const serviceCards = document.querySelectorAll('.service-card, .special-card');
+            serviceCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // ホバーエフェクトの強化
+        document.querySelectorAll('.service-card, .special-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問 - 宮崎クリーニング社</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'メイリオ', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            color: #333;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(24, 180, 196, 0.1);
+            border-bottom: 3px solid #18b4c4;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #18b4c4;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .phone {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #18b4c4;
+        }
+
+        .hours {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        nav {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-content a {
+            display: block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-content a:hover, .nav-content a.active {
+            background-color: #f8fdff;
+            color: #18b4c4;
+            border-bottom: 3px solid #18b4c4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, #18b4c4 0%, #169fb0 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section:nth-child(even) {
+            background-color: #fafffe;
+        }
+
+        .search-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            border: 2px solid #18b4c4;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem;
+            border: 2px solid #18b4c4;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 10px rgba(24, 180, 196, 0.3);
+        }
+
+        .search-btn {
+            background: #18b4c4;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .search-btn:hover {
+            background: #169fb0;
+            transform: translateY(-2px);
+        }
+
+        .category-nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .category-btn {
+            background: white;
+            color: #18b4c4;
+            border: 2px solid #18b4c4;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: #18b4c4;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: #18b4c4;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #18b4c4;
+            border-radius: 2px;
+        }
+
+        .faq-list {
+            list-style: none;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 2px solid #f0f0f0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #18b4c4;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #18b4c4;
+            position: relative;
+            background: white;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-question:hover {
+            background: #f8fdff;
+        }
+
+        .question-icon {
+            background: #18b4c4;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            min-width: 30px;
+        }
+
+        .question-text {
+            flex: 1;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: #18b4c4;
+            transition: transform 0.3s ease;
+            min-width: 20px;
+        }
+
+        .faq-question.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #666;
+            display: none;
+            background: #f8fdff;
+            line-height: 1.8;
+        }
+
+        .faq-answer.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 200px;
+            }
+        }
+
+        .answer-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .answer-icon {
+            background: #18b4c4;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            min-width: 30px;
+            margin-top: 0.2rem;
+        }
+
+        .contact-cta {
+            background: linear-gradient(135deg, #18b4c4, #169fb0);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .contact-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .contact-cta p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            background: white;
+            color: #18b4c4;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+        }
+
+        .popular-questions {
+            background: #f8fdff;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 2px solid #18b4c4;
+        }
+
+        .popular-questions h3 {
+            color: #18b4c4;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .popular-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .popular-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #18b4c4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popular-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 10px rgba(24, 180, 196, 0.2);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #18b4c4;
+            font-weight: 600;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #18b4c4;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #555;
+            margin-top: 2rem;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .nav-content {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-content a {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-input {
+                min-width: 100%;
+            }
+
+            .category-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .popular-list {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .answer-content {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .answer-icon {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <span style="width: 40px; height: 40px; background: #18b4c4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">✨</span>
+                    宮崎クリーニング社
+                </span>
+            </div>
+            <div class="contact-info">
+                <div class="phone">📞 276-2402</div>
+                <div class="hours">営業時間: 7:30-19:00 (日祝定休)</div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="index.html">ホーム</a>
+            <a href="services.html">サービス</a>
+            <a href="price.html">料金表</a>
+            <a href="index.html#news">お知らせ</a>
+            <a href="faq.html" class="active">よくある質問</a>
+            <a href="stores.html">店舗一覧</a>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>よくある質問</h1>
+            <p>お客様からよくいただくご質問にお答えします</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="知りたいことを検索してください..." id="searchInput">
+                    <button class="search-btn" onclick="searchFAQ()">🔍 検索</button>
+                </div>
+            </div>
+
+            <div class="popular-questions">
+                <h3>🔥 人気の質問</h3>
+                <ul class="popular-list">
+                    <li class="popular-item" onclick="scrollToFAQ('料金')">料金・支払い方法について</li>
+                    <li class="popular-item" onclick="scrollToFAQ('納期')">仕上がり・納期について</li>
+                    <li class="popular-item" onclick="scrollToFAQ('シミ')">シミ抜きサービス</li>
+                    <li class="popular-item" onclick="scrollToFAQ('宅配')">宅配・集配サービス</li>
+                </ul>
+            </div>
+
+            <div class="category-nav">
+                <a href="#general" class="category-btn active" onclick="showCategory('general')">基本サービス</a>
+                <a href="#pricing" class="category-btn" onclick="showCategory('pricing')">料金・支払い</a>
+                <a href="#delivery" class="category-btn" onclick="showCategory('delivery')">納期・受取</a>
+                <a href="#special" class="category-btn" onclick="showCategory('special')">特殊サービス</a>
+                <a href="#technical" class="category-btn" onclick="showCategory('technical')">技術・品質</a>
+            </div>
+
+            <!-- 基本サービス -->
+            <div class="faq-category" id="general">
+                <h2 class="category-title">基本サービスについて</h2>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">営業時間を教えてください</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    <strong>本社工場：</strong>平日・土曜 7:30-19:00、祝日日曜 7:30-18:00<br>
+                                    <strong>千代野店：</strong>5:00-24:00（ほぼ24時間営業）<br>
+                                    各店舗により営業時間が異なります。詳しくは店舗一覧ページをご確認ください。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">どの店舗でも同じサービスを受けられますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    白山・金沢の全6店舗で同じ品質のクリーニングサービスをご提供しています。ただし、営業時間や一部の取扱いサービスが店舗により異なる場合がありますので、詳しくは各店舗にお問い合わせください。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">初回利用時に必要なものはありますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    特別な手続きは不要です。お名前とお電話番号をお伺いするだけで、すぐにご利用いただけます。会員登録をされると、お得なサービスやキャンペーン情報をお送りできます。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 料金・支払い -->
+            <div class="faq-category" id="pricing" style="display: none;">
+                <h2 class="category-title">料金・支払いについて</h2>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">支払い方法は何がありますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    現金の他、各種クレジットカード、電子マネー、QRコード決済もご利用いただけます。詳しくは各店舗でお尋ねください。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">料金はいつ支払いますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    お預かり時にお支払いいただく前払い制です。料金はお預かり時に確定し、お会計をさせていただきます。お引き取り時の追加料金は基本的にございません。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">シミ抜きは有料ですか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    基本的なシミ抜きは無料サービスです。ただし、特殊なシミや時間の経過したシミ、薬剤を使う手間のかかるシミの場合は有料（1箇所300円〜）となります。事前にご相談させていただきます。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">割引やキャンペーンはありますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    春と秋の年2回、お得なご優待サービスを実施しております。また、Yシャツ10枚以上で特別料金、宅配サービス3,000円以上で配達料無料など、各種サービスをご用意しています。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 納期・受取 -->
+            <div class="faq-category" id="delivery" style="display: none;">
+                <h2 class="category-title">納期・受取について</h2>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">朝出したらいつ仕上がりますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    午前10時までにお預かりした品物は翌日の午後5時に仕上がります。ただし、特殊加工や修理が必要な場合は別途日数をいただく場合があります。店舗により営業時間が異なりますので、詳細は各店舗にお確認ください。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">仕上がり予定日を過ぎてしまった場合は？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    お預かり期間に制限はございませんので、ご都合の良い時にお引き取りください。ただし、3ヶ月以上経過した場合は、保管場所の都合上、ご連絡させていただく場合があります。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">宅配サービスはありますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    配達エリア（犀川以南、手取川以北）にて宅配サービスを行っています。配達料金は往復500円（税込）ですが、3,000円以上のご利用で配達料無料となります。企業様・個人様問わずご利用いただけます。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 特殊サービス -->
+            <div class="faq-category" id="special" style="display: none;">
+                <h2 class="category-title">特殊サービスについて</h2>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">チャイルドシートのクリーニングはどのくらい時間がかかりますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    チャイルドシートクリーニングは分解・洗浄・抗菌処理を行うため、通常1週間程度お時間をいただいています。お急ぎの場合はご相談ください。代替シートの貸し出しは行っておりませんので、予めご了承ください。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">ぬいぐるみクリーニングで注意することはありますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    電子部品が内蔵されているもの、接着剤で付けられた装飾品が多いもの、毛足が長く絡まりやすいものはお受けできない場合があります。お預かり前に必ず確認させていただきます。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">防虫・防ダニ加工の効果はどのくらい持続しますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    加工の効果は約6ヶ月〜1年程度持続します。着用頻度や保管環境により効果期間は変わります。定期的な再加工をおすすめしています。効果について不安な場合は、再加工のタイミングをご相談ください。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 技術・品質 -->
+            <div class="faq-category" id="technical" style="display: none;">
+                <h2 class="category-title">技術・品質について</h2>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">ドライクリーニングとは何ですか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    水を使わず、石油系溶剤やパークロロエチレンなどの有機溶剤を使用する洗浄方法です。油汚れを効果的に落とし、型崩れや収縮を防ぎます。デリケートな素材や型崩れしやすい衣類に適しています。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">クリーニングできない衣類はありますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    汚れや破れがひどいもの、接着剤や塗料が付着したもの、装飾品が多数ついているもの、皮革・毛皮で損傷が激しいものなどはお受けできない場合があります。判断が難しい場合は事前にご相談ください。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-icon">Q</span>
+                            <span class="question-text">万が一事故があった場合の補償はありますか？</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <span class="answer-icon">A</span>
+                                <div>
+                                    当社は全国クリーニング生活衛生同業組合連合会加盟店として、クリーニング事故賠償保険に加入しております。万が一の事故の際は、適切な補償をさせていただきます。事故防止のため、お預かり時に入念な確認を行っています。
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="contact-cta">
+                <h3>解決しない疑問がありますか？</h3>
+                <p>お気軽にお問い合わせください。専門スタッフが丁寧にお答えいたします。</p>
+                <div class="cta-buttons">
+                    <a href="tel:276-2402" class="cta-btn">📞 電話で相談</a>
+                    <a href="mailto:dddoublelari@gmail.com?subject=宮崎クリーニング社へのお問い合わせ&body=お問い合わせ内容をご記入ください。%0D%0A%0D%0A【お客様情報】%0D%0Aお名前：%0D%0A電話番号：%0D%0Aご利用予定店舗：%0D%0A%0D%0A【お問い合わせ内容】%0D%0A" class="cta-btn">✉️ お問い合わせフォーム</a>
+                    <a href="stores.html" class="cta-btn">🏪 店舗を探す</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>
+                    <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <span style="width: 30px; height: 30px; background: #18b4c4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">✨</span>
+                        宮崎クリーニング社
+                    </span>
+                </h3>
+                <p>〒924-0000<br>
+                石川県白山市徳丸町427-1<br>
+                TEL: 276-2402<br>
+                営業: 平日・土曜 7:30-19:00（日祝定休）</p>
+            </div>
+            <div class="footer-section">
+                <h3>サービス</h3>
+                <p><a href="services.html">ドライクリーニング</a><br>
+                <a href="services.html">ワイシャツクリーニング</a><br>
+                <a href="services.html">布団クリーニング</a><br>
+                <a href="services.html">革製品クリーニング</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>お客様サポート</h3>
+                <p><a href="faq.html">よくある質問</a><br>
+                <a href="price.html">料金表</a><br>
+                <a href="index.html#news">お知らせ</a><br>
+                <a href="contact.html">お問い合わせ</a><br>
+                クリーニング事故賠償保険加入店</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 宮崎クリーニング社. All rights reserved. | 全国クリーニング生活衛生同業組合連合会加盟店</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ機能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isActive = this.classList.contains('active');
+                
+                // 同じカテゴリ内の他のFAQを閉じる
+                const category = this.closest('.faq-category');
+                category.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+                category.querySelectorAll('.faq-answer').forEach(a => {
+                    a.classList.remove('active');
+                });
+                
+                // クリックしたFAQが閉じていた場合は開く
+                if (!isActive) {
+                    this.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // カテゴリ切り替え
+        function showCategory(categoryId) {
+            // 全カテゴリを非表示
+            document.querySelectorAll('.faq-category').forEach(cat => {
+                cat.style.display = 'none';
+            });
+            
+            // 選択されたカテゴリを表示
+            document.getElementById(categoryId).style.display = 'block';
+            
+            // ボタンのアクティブ状態を更新
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // 検索機能
+        function searchFAQ() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            if (searchTerm === '') {
+                // 検索語が空の場合、全て表示
+                faqItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                return;
+            }
+            
+            let hasResults = false;
+            faqItems.forEach(item => {
+                const questionText = item.querySelector('.question-text').textContent.toLowerCase();
+                const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // 全カテゴリを表示（検索結果表示のため）
+            if (hasResults) {
+                document.querySelectorAll('.faq-category').forEach(cat => {
+                    cat.style.display = 'block';
+                });
+            }
+        }
+
+        // エンターキーで検索
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchFAQ();
+            }
+        });
+
+        // 人気の質問をクリックした時の動作
+        function scrollToFAQ(keyword) {
+            document.getElementById('searchInput').value = keyword;
+            searchFAQ();
+        }
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

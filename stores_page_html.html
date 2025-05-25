@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店舗一覧 - 宮崎クリーニング社</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'メイリオ', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            color: #333;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(24, 180, 196, 0.1);
+            border-bottom: 3px solid #18b4c4;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #18b4c4;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .phone {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #18b4c4;
+        }
+
+        .hours {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        nav {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-content a {
+            display: block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-content a:hover, .nav-content a.active {
+            background-color: #f8fdff;
+            color: #18b4c4;
+            border-bottom: 3px solid #18b4c4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, #18b4c4 0%, #169fb0 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section:nth-child(even) {
+            background-color: #fafffe;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #18b4c4;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #18b4c4;
+            border-radius: 2px;
+        }
+
+        .stores-overview {
+            text-align: center;
+            background: linear-gradient(135deg, #f8fdff, #e6f9fc);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            border: 2px solid #18b4c4;
+        }
+
+        .stores-overview h3 {
+            font-size: 1.5rem;
+            color: #18b4c4;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .overview-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #18b4c4;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .store-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .store-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(24, 180, 196, 0.2);
+            border: 2px solid #18b4c4;
+        }
+
+        .store-image {
+            height: 200px;
+            background: linear-gradient(135deg, #18b4c4, #169fb0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .store-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .store-placeholder {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .store-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.9);
+            color: #18b4c4;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .store-info {
+            padding: 2rem;
+        }
+
+        .store-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #18b4c4;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .store-icon {
+            font-size: 1.2rem;
+        }
+
+        .store-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            gap: 0.5rem;
+        }
+
+        .detail-icon {
+            color: #18b4c4;
+            margin-top: 0.1rem;
+            min-width: 1.2rem;
+        }
+
+        .detail-text {
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .operating-hours {
+            background: #f8fdff;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #18b4c4;
+            margin-bottom: 1.5rem;
+        }
+
+        .hours-title {
+            font-weight: 600;
+            color: #18b4c4;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .hours-text {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .store-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.8rem 1rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-call {
+            background: #18b4c4;
+            color: white;
+        }
+
+        .btn-call:hover {
+            background: #169fb0;
+            transform: translateY(-2px);
+        }
+
+        .btn-map {
+            background: white;
+            color: #18b4c4;
+            border: 2px solid #18b4c4;
+        }
+
+        .btn-map:hover {
+            background: #18b4c4;
+            color: white;
+        }
+
+        .access-info {
+            background: linear-gradient(135deg, #18b4c4, #169fb0);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .access-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .access-item h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 3rem;
+            border: 2px solid #18b4c4;
+        }
+
+        .contact-section h3 {
+            color: #18b4c4;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .main-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: #18b4c4;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(24, 180, 196, 0.3);
+            margin-top: 1rem;
+        }
+
+        .main-contact:hover {
+            background: #169fb0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(24, 180, 196, 0.4);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #18b4c4;
+            font-weight: 600;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #18b4c4;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #555;
+            margin-top: 2rem;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .nav-content {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-content a {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .stores-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .store-actions {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                min-width: auto;
+            }
+
+            .access-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stores-overview {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <span style="width: 40px; height: 40px; background: #18b4c4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">✨</span>
+                    宮崎クリーニング社
+                </span>
+            </div>
+            <div class="contact-info">
+                <div class="phone">📞 276-2402</div>
+                <div class="hours">営業時間: 7:30-19:00 (日祝定休)</div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="index.html">ホーム</a>
+            <a href="index.html#services">サービス</a>
+            <a href="price.html">料金表</a>
+            <a href="index.html#news">お知らせ</a>
+            <a href="index.html#faq">よくある質問</a>
+            <a href="stores.html" class="active">店舗一覧</a>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>店舗一覧</h1>
+            <p>白山・金沢エリアに6店舗を展開。お近くの店舗をご利用ください</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="stores-overview">
+                <h3>宮崎クリーニング社 店舗ネットワーク</h3>
+                <p>地域密着のサービスで、白山市・金沢市の皆様に愛され続けています</p>
+                <div class="overview-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">6</span>
+                        <div class="stat-label">店舗数</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">30+</span>
+                        <div class="stat-label">年の実績</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5:00</span>
+                        <div class="stat-label">最早営業開始</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24:00</span>
+                        <div class="stat-label">最遅営業終了</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stores-grid">
+                <!-- 本社工場 -->
+                <div class="store-card">
+                    <div class="store-image">
+                        <img src="/img/stores/honsya.jpg" alt="本社工場外観">
+                        <div class="store-badge">本社工場</div>
+                    </div>
+                    <div class="store-info">
+                        <h3 class="store-name">
+                            <span class="store-icon">🏭</span>
+                            本社工場
+                        </h3>
+                        <div class="store-details">
+                            <div class="detail-item">
+                                <span class="detail-icon">📍</span>
+                                <span class="detail-text">〒924-0000<br>白山市徳丸町427-1</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">🚗</span>
+                                <span class="detail-text">駐車場完備<br>大型車両対応可</span>
+                            </div>
+                        </div>
+                        <div class="operating-hours">
+                            <div class="hours-title">🕐 営業時間</div>
+                            <div class="hours-text">
+                                平日・土曜日: AM7:30〜PM7:00<br>
+                                祝日日曜: AM7:30〜PM6:00
+                            </div>
+                        </div>
+                        <div class="store-actions">
+                            <a href="tel:276-2402" class="action-btn btn-call">📞 電話</a>
+                            <a href="https://www.google.com/maps/search/白山市徳丸町427-1" target="_blank" class="action-btn btn-map">🗺️ 地図</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- アピタ松任店 -->
+                <div class="store-card">
+                    <div class="store-image">
+                        <img src="/img/stores/apita.jpg" alt="アピタ松任店">
+                        <div class="store-badge">ショッピングセンター内</div>
+                    </div>
+                    <div class="store-info">
+                        <h3 class="store-name">
+                            <span class="store-icon">🏪</span>
+                            アピタ松任店
+                        </h3>
+                        <div class="store-details">
+                            <div class="detail-item">
+                                <span class="detail-icon">📍</span>
+                                <span class="detail-text">〒924-0000<br>白山市幸明町270番地</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">🛒</span>
+                                <span class="detail-text">アピタ松任店内<br>お買い物ついでに便利</span>
+                            </div>
+                        </div>
+                        <div class="operating-hours">
+                            <div class="hours-title">🕐 営業時間</div>
+                            <div class="hours-text">
+                                毎日: AM10:30〜PM8:30
+                            </div>
+                        </div>
+                        <div class="store-actions">
+                            <a href="tel:274-6738" class="action-btn btn-call">📞 電話</a>
+                            <a href="https://www.google.com/maps/search/白山市幸明町270番地" target="_blank" class="action-btn btn-map">🗺️ 地図</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 石同店 -->
+                <div class="store-card">
+                    <div class="store-image">
+                        <img src="/img/stores/ishido.jpg" alt="石同店">
+                        <div class="store-badge">住宅街</div>
+                    </div>
+                    <div class="store-info">
+                        <h3 class="store-name">
+                            <span class="store-icon">🏬</span>
+                            石同店
+                        </h3>
+                        <div class="store-details">
+                            <div class="detail-item">
+                                <span class="detail-icon">📍</span>
+                                <span class="detail-text">〒924-0000<br>白山市石同町26</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">🏘️</span>
+                                <span class="detail-text">住宅街の身近な店舗<br>地域密着サービス</span>
+                            </div>
+                        </div>
+                        <div class="operating-hours">
+                            <div class="hours-title">🕐 営業時間</div>
+                            <div class="hours-text">
+                                詳細はお電話でお問い合わせください
+                            </div>
+                        </div>
+                        <div class="store-actions">
+                            <a href="tel:275-0109" class="action-btn btn-call">📞 電話</a>
+                            <a href="https://www.google.com/maps/search/白山市石同町26" target="_blank" class="action-btn btn-map">🗺️ 地図</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 大阪屋ショップ松任店 -->
+                <div class="store-card">
+                    <div class="store-image">
+                        <img src="/img/stores/osaka.jpg" alt="大阪屋ショップ松任店">
+                        <div class="store-badge">スーパー内</div>
+                    </div>
+                    <div class="store-info">
+                        <h3 class="store-name">
+                            <span class="store-icon">🛒</span>
+                            大阪屋ショップ松任店
+                        </h3>
+                        <div class="store-details">
+                            <div class="detail-item">
+                                <span class="detail-icon">📍</span>
+                                <span class="detail-text">〒924-0000<br>白山市五歩町435ー1</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">🍎</span>
+                                <span class="detail-text">大阪屋ショップ内<br>食材お買い物と一緒に</span>
+                            </div>
+                        </div>
+                        <div class="operating-hours">
+                            <div class="hours-title">🕐 営業時間</div>
+                            <div class="hours-text">
+                                平日: AM10:00〜PM7:00<br>
+                                土日祝: AM9:30〜PM7:00
+                            </div>
+                        </div>
+                        <div class="store-actions">
+                            <a href="tel:274-0036" class="action-btn btn-call">📞 電話</a>
+                            <a href="https://www.google.com/maps/search/白山市五歩町435-1" target="_blank" class="action-btn btn-map">🗺️ 地図</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ラスパ白山店 -->
+                <div class="store-card">
+                    <div class="store-image">
+                        <img src="/img/stores/raspa.jpg" alt="ラスパ白山店">
+                        <div class="store-badge">ショッピングモール</div>
+                    </div>
+                    <div class="store-info">
+                        <h3 class="store-name">
+                            <span class="store-icon">🏢</span>
+                            ラスパ白山店
+                        </h3>
+                        <div class="store-details">
+                            <div class="detail-item">
+                                <span class="detail-icon">📍</span>
+                                <span class="detail-text">〒924-0000<br>白山市倉光5-14</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">🎪</span>
+                                <span class="detail-text">ラスパ白山内<br>レジャーついでに便利</span>
+                            </div>
+                        </div>
+                        <div class="operating-hours">
+                            <div class="hours-title">🕐 営業時間</div>
+                            <div class="hours-text">
+                                毎日: AM9:30〜PM9:00
+                            </div>
+                        </div>
+                        <div class="store-actions">
+                            <a href="tel:274-3008" class="action-btn btn-call">📞 電話</a>
+                            <a href="https://www.google.com/maps/search/白山市倉光5-14" target="_blank" class="action-btn btn-map">🗺️ 地図</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 千代野店 -->
+                <div class="store-card">
+                    <div class="store-image">
+                        <img src="/img/stores/chiyono.jpg" alt="千代野店">
+                        <div class="store-badge">24時間営業</div>
+                    </div>
+                    <div class="store-info">
+                        <h3 class="store-name">
+                            <span class="store-icon">🌙</span>
+                            千代野店
+                        </h3>
+                        <div class="store-details">
+                            <div class="detail-item">
+                                <span class="detail-icon">📍</span>
+                                <span class="detail-text">〒924-0000<br>白山市千代野東5-15</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">⭐</span>
+                                <span class="detail-text">24時間営業<br>いつでもご利用可能</span>
+                            </div>
+                        </div>
+                        <div class="operating-hours">
+                            <div class="hours-title">🕐 営業時間</div>
+                            <div class="hours-text">
+                                毎日: AM5:00〜PM24:00<br>
+                                <strong>※ほぼ24時間営業</strong>
+                            </div>
+                        </div>
+                        <div class="store-actions">
+                            <a href="tel:276-8113" class="action-btn btn-call">📞 電話</a>
+                            <a href="https://www.google.com/maps/search/白山市千代野東5-15" target="_blank" class="action-btn btn-map">🗺️ 地図</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- アクセス情報 -->
+            <div class="access-info">
+                <h3 class="access-title">アクセス・交通情報</h3>
+                <div class="access-grid">
+                    <div class="access-item">
+                        <h4>🚗 お車でお越しの方</h4>
+                        <p>全店舗に駐車場完備<br>
+                        北陸自動車道「松任IC」から各店舗へ<br>
+                        カーナビ設定は各店舗の住所をご利用ください</p>
+                    </div>
+                    <div class="access-item">
+                        <h4>🚌 公共交通機関</h4>
+                        <p>JR北陸本線「松任駅」よりバス<br>
+                        北鉄バス各路線をご利用ください<br>
+                        詳細は各店舗にお問い合わせください</p>
+                    </div>
+                    <div class="access-item">
+                        <h4>🚚 宅配サービス</h4>
+                        <p>配達エリア: 犀川以南、手取川以北<br>
+                        企業様・個人様問わずご利用可能<br>
+                        配達料: 500円（3,000円以上で無料）</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- お問い合わせセクション -->
+            <div class="contact-section">
+                <h3>店舗に関するお問い合わせ</h3>
+                <p>各店舗への詳しいアクセス方法やサービス内容について<br>
+                お気軽にお問い合わせください。本社で一括してご案内いたします。</p>
+                <a href="tel:276-2402" class="main-contact">
+                    📞 本社へお電話 276-2402
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>
+                    <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <span style="width: 30px; height: 30px; background: #18b4c4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">✨</span>
+                        宮崎クリーニング社
+                    </span>
+                </h3>
+                <p>〒924-0000<br>
+                石川県白山市徳丸町427-1<br>
+                TEL: 276-2402<br>
+                営業: 平日・土曜 7:30-19:00（日祝定休）</p>
+            </div>
+            <div class="footer-section">
+                <h3>サービス</h3>
+                <p><a href="index.html#services">ドライクリーニング</a><br>
+                <a href="index.html#services">ワイシャツクリーニング</a><br>
+                <a href="index.html#services">布団クリーニング</a><br>
+                <a href="index.html#services">革製品クリーニング</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>お客様サポート</h3>
+                <p><a href="index.html#faq">よくある質問</a><br>
+                <a href="price.html">料金表</a><br>
+                <a href="index.html#news">お知らせ</a><br>
+                お問い合わせ<br>
+                クリーニング事故賠償保険加入店</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 宮崎クリーニング社. All rights reserved. | 全国クリーニング生活衛生同業組合連合会加盟店</p>
+        </div>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 店舗カードのアニメーション
+        window.addEventListener('load', function() {
+            const storeCards = document.querySelectorAll('.store-card');
+            storeCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+
+        // 画像読み込みエラー処理
+        document.querySelectorAll('.store-image img').forEach(img => {
+            img.addEventListener('error', function() {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'store-placeholder';
+                placeholder.textContent = '🏪';
+                this.parentNode.replaceChild(placeholder, this);
+            });
+        });
+
+        // 電話番号のクリック追跡（オプション）
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('電話クリック:', this.getAttribute('href'));
+            });
+        });
+
+        // 地図リンクのクリック追跡（オプション）
+        document.querySelectorAll('a[href*="google.com/maps"]').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('地図クリック:', this.getAttribute('href'));
+            });
+        });
+    </script>
+</body>
+</html>
