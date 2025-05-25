@@ -202,25 +202,26 @@
         }
 
         .store-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            border-color: #18b4c4;
             box-shadow: 0 15px 30px rgba(24, 180, 196, 0.2);
-            border: 2px solid #18b4c4;
         }
 
         .store-image {
             height: 200px;
-            background: linear-gradient(135deg, #18b4c4, #169fb0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
             overflow: hidden;
+            position: relative;
         }
 
         .store-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .store-card:hover .store-image img {
+            transform: scale(1.1);
         }
 
         .store-placeholder {
@@ -242,7 +243,7 @@
         }
 
         .store-info {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .store-name {
@@ -607,7 +608,7 @@
                 <!-- 本社工場 -->
                 <div class="store-card">
                     <div class="store-image">
-                        <img src="/img/stores/honsya.jpg" alt="本社工場外観">
+                        <img src="img/stores/本社.jpeg" alt="本社工場外観">
                         <div class="store-badge">本社工場</div>
                     </div>
                     <div class="store-info">
@@ -642,7 +643,7 @@
                 <!-- アピタ松任店 -->
                 <div class="store-card">
                     <div class="store-image">
-                        <img src="/img/stores/apita.jpg" alt="アピタ松任店">
+                        <img src="img/stores/アピタ松任.jpeg" alt="アピタ松任店">
                         <div class="store-badge">ショッピングセンター内</div>
                     </div>
                     <div class="store-info">
@@ -676,7 +677,7 @@
                 <!-- 石同店 -->
                 <div class="store-card">
                     <div class="store-image">
-                        <img src="/img/stores/ishido.jpg" alt="石同店">
+                        <img src="img/stores/石同.jpeg" alt="石同店">
                         <div class="store-badge">住宅街</div>
                     </div>
                     <div class="store-info">
@@ -710,7 +711,7 @@
                 <!-- 大阪屋ショップ松任店 -->
                 <div class="store-card">
                     <div class="store-image">
-                        <img src="/img/stores/osaka.jpg" alt="大阪屋ショップ松任店">
+                        <img src="img/stores/大阪屋松任.jpeg" alt="大阪屋ショップ松任店">
                         <div class="store-badge">スーパー内</div>
                     </div>
                     <div class="store-info">
@@ -745,7 +746,7 @@
                 <!-- ラスパ白山店 -->
                 <div class="store-card">
                     <div class="store-image">
-                        <img src="/img/stores/raspa.jpg" alt="ラスパ白山店">
+                        <img src="img/stores/ラスパ松任.jpeg" alt="ラスパ白山店">
                         <div class="store-badge">ショッピングモール</div>
                     </div>
                     <div class="store-info">
@@ -779,7 +780,7 @@
                 <!-- 千代野店 -->
                 <div class="store-card">
                     <div class="store-image">
-                        <img src="/img/stores/chiyono.jpg" alt="千代野店">
+                        <img src="img/stores/千代野.jpeg" alt="千代野店">
                         <div class="store-badge">24時間営業</div>
                     </div>
                     <div class="store-info">
