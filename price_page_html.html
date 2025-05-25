@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>料金表 - 宮崎クリーニング社</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'メイリオ', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            color: #333;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(24, 180, 196, 0.1);
+            border-bottom: 3px solid #18b4c4;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #18b4c4;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .phone {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #18b4c4;
+        }
+
+        .hours {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        nav {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-content a {
+            display: block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-content a:hover, .nav-content a.active {
+            background-color: #f8fdff;
+            color: #18b4c4;
+            border-bottom: 3px solid #18b4c4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, #18b4c4 0%, #169fb0 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section:nth-child(even) {
+            background-color: #fafffe;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #18b4c4;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #18b4c4;
+            border-radius: 2px;
+        }
+
+        .price-notice {
+            background: #fff9e6;
+            border: 2px solid #18b4c4;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .price-notice h3 {
+            color: #18b4c4;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .price-notice ul {
+            text-align: left;
+            color: #666;
+            list-style-position: inside;
+            line-height: 1.8;
+        }
+
+        .price-category {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            border: 1px solid #f0f0f0;
+        }
+
+        .category-header {
+            background: #18b4c4;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .category-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .category-header .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .price-table th {
+            background: #f8fdff;
+            padding: 1rem;
+            font-weight: 600;
+            border-bottom: 2px solid #18b4c4;
+            text-align: left;
+            color: #18b4c4;
+        }
+
+        .price-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .price-table tr:hover {
+            background-color: #f8fdff;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #18b4c4;
+            font-size: 1.1rem;
+            text-align: right;
+        }
+
+        .delivery-info {
+            background: linear-gradient(135deg, #18b4c4, #169fb0);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .delivery-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .delivery-info .icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .delivery-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .delivery-details h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-contact {
+            background: #fff;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 3rem;
+            border: 2px solid #18b4c4;
+        }
+
+        .quick-contact h3 {
+            color: #18b4c4;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #18b4c4;
+            color: white;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(24, 180, 196, 0.3);
+        }
+
+        .contact-btn:hover {
+            background-color: #169fb0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(24, 180, 196, 0.4);
+        }
+
+        .contact-btn.phone {
+            background-color: #ffffff;
+            color: #18b4c4;
+            border: 2px solid #18b4c4;
+        }
+
+        .contact-btn.phone:hover {
+            background-color: #18b4c4;
+            color: white;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #18b4c4;
+            font-weight: 600;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #18b4c4;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #555;
+            margin-top: 2rem;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .nav-content {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-content a {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .price-table {
+                font-size: 0.9rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .delivery-details {
+                grid-template-columns: 1fr;
+            }
+
+            .price-notice {
+                padding: 1.5rem;
+            }
+
+            .category-header {
+                padding: 1rem;
+            }
+
+            .category-header h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <span style="width: 40px; height: 40px; background: #18b4c4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">✨</span>
+                    宮崎クリーニング社
+                </span>
+            </div>
+            <div class="contact-info">
+                <div class="phone">📞 276-2402</div>
+                <div class="hours">営業時間: 7:30-19:00 (日祝定休)</div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="#home">ホーム</a>
+            <a href="#services">サービス</a>
+            <a href="#prices" class="active">料金表</a>
+            <a href="#news">お知らせ</a>
+            <a href="#faq">よくある質問</a>
+            <a href="#stores">店舗一覧</a>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>料金表</h1>
+            <p>明確で分かりやすい料金設定で、安心してご利用いただけます</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="price-notice">
+                <h3>⚠️ 料金について</h3>
+                <ul>
+                    <li>防水・撥水・防虫加工も割引になります</li>
+                    <li>ワイシャツ・シーツ類など糊を使うもの、作業服等、和服・革製品等の外注品は除かせていただきます</li>
+                    <li>シルク・カシミア・アンゴラ等の特殊素材は別料金がかかります</li>
+                    <li>表示価格は税込価格です</li>
+                </ul>
+            </div>
+
+            <!-- 一般衣類 -->
+            <div class="price-category">
+                <div class="category-header">
+                    <div class="icon">👔</div>
+                    <h3>一般衣類</h3>
+                    <p>スーツからカジュアルウェアまで</p>
+                </div>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>品目</th>
+                            <th>料金（税込）</th>
+                            <th>納期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>背広 上</td>
+                            <td class="price">¥800</td>
+                            <td>3日</td>
+                        </tr>
+                        <tr>
+                            <td>ズボン</td>
+                            <td class="price">¥600</td>
+                            <td>3日</td>
+                        </tr>
+                        <tr>
+                            <td>スカート</td>
+                            <td class="price">¥600</td>
+                            <td>3日</td>
+                        </tr>
+                        <tr>
+                            <td>ネクタイ</td>
+                            <td class="price">¥400</td>
+                            <td>3日</td>
+                        </tr>
+                        <tr>
+                            <td>オープンシャツ</td>
+                            <td class="price">¥500</td>
+                            <td>3日</td>
+                        </tr>
+                        <tr>
+                            <td>ジャンパー</td>
+                            <td class="price">¥900</td>
+                            <td>4日</td>
+                        </tr>
+                        <tr>
+                            <td>セーター</td>
+                            <td class="price">¥600</td>
+                            <td>3日</td>
+                        </tr>
+                        <tr>
+                            <td>カーディガン</td>
+                            <td class="price">¥650</td>
+                            <td>3日</td>
+                        </tr>
+                        <tr>
+                            <td>ブラウス</td>
+                            <td class="price">¥500</td>
+                            <td>3日</td>
+                        </tr>
+                        <tr>
+                            <td>婦人パンツ</td>
+                            <td class="price">¥600</td>
+                            <td>3日</td>
+                        </tr>
+                        <tr>
+                            <td>ワンピース</td>
+                            <td class="price">¥1,200</td>
+                            <td>4日</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- アウター -->
+            <div class="price-category">
+                <div class="category-header">
+                    <div class="icon">🧥</div>
+                    <h3>アウター・コート類</h3>
+                    <p>冬物からスポーツウェアまで</p>
+                </div>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>品目</th>
+                            <th>料金（税込）</th>
+                            <th>納期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>オーバーコート</td>
+                            <td class="price">¥1,500</td>
+                            <td>5日</td>
+                        </tr>
+                        <tr>
+                            <td>ハーフコート</td>
+                            <td class="price">¥1,300</td>
+                            <td>4日</td>
+                        </tr>
+                        <tr>
+                            <td>ダウンジャケット</td>
+                            <td class="price">¥2,200</td>
+                            <td>5日</td>
+                        </tr>
+                        <tr>
+                            <td>ライトダウンジャケット</td>
+                            <td class="price">¥1,800</td>
+                            <td>4日</td>
+                        </tr>
+                        <tr>
+                            <td>スキーウェア</td>
+                            <td class="price">¥1,600</td>
+                            <td>5日</td>
+                        </tr>
+                        <tr>
+                            <td>スキーズボン</td>
+                            <td class="price">¥1,400</td>
+                            <td>5日</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 毛布・寝具 -->
+            <div class="price-category">
+                <div class="category-header">
+                    <div class="icon">🛏️</div>
+                    <h3>毛布・寝具類</h3>
+                    <p>清潔で快適な睡眠のために</p>
+                </div>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>品目</th>
+                            <th>料金（税込）</th>
+                            <th>納期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>毛布（S一重）</td>
+                            <td class="price">¥1,200</td>
+                            <td>7日</td>
+                        </tr>
+                        <tr>
+                            <td>毛布（S二重）</td>
+                            <td class="price">¥1,800</td>
+                            <td>7日</td>
+                        </tr>
+                        <tr>
+                            <td>毛布（W一重）</td>
+                            <td class="price">¥1,600</td>
+                            <td>7日</td>
+                        </tr>
+                        <tr>
+                            <td>毛布（W二重）</td>
+                            <td class="price">¥2,400</td>
+                            <td>7日</td>
+                        </tr>
+                        <tr>
+                            <td>羊毛敷布団（S）</td>
+                            <td class="price">¥4,800</td>
+                            <td>10日</td>
+                        </tr>
+                        <tr>
+                            <td>綿布団（S）</td>
+                            <td class="price">¥4,500</td>
+                            <td>10日</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- カーペット -->
+            <div class="price-category">
+                <div class="category-header">
+                    <div class="icon">🏠</div>
+                    <h3>カーペット・じゅうたん</h3>
+                    <p>お部屋を清潔に保ちます</p>
+                </div>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>品目</th>
+                            <th>料金（税込）</th>
+                            <th>納期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>カーペット（1畳）</td>
+                            <td class="price">¥2,800</td>
+                            <td>7日</td>
+                        </tr>
+                        <tr>
+                            <td>電気カーペット（1畳）</td>
+                            <td class="price">¥3,200</td>
+                            <td>10日</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 皮革製品 -->
+            <div class="price-category">
+                <div class="category-header">
+                    <div class="icon">👜</div>
+                    <h3>皮革・毛皮製品</h3>
+                    <p>専門技術で美しく仕上げます</p>
+                </div>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>品目</th>
+                            <th>料金（税込）</th>
+                            <th>納期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>皮ジャンパー</td>
+                            <td class="price">¥4,500</td>
+                            <td>10日</td>
+                        </tr>
+                        <tr>
+                            <td>皮コート</td>
+                            <td class="price">¥6,800</td>
+                            <td>12日</td>
+                        </tr>
+                        <tr>
+                            <td>毛皮コート</td>
+                            <td class="price">¥8,500</td>
+                            <td>14日</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 和服 -->
+            <div class="price-category">
+                <div class="category-header">
+                    <div class="icon">👘</div>
+                    <h3>和服</h3>
+                    <p>伝統の技術で丁寧にお手入れ</p>
+                </div>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>品目</th>
+                            <th>料金（税込）</th>
+                            <th>納期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>振袖</td>
+                            <td class="price">¥4,200</td>
+                            <td>10日</td>
+                        </tr>
+                        <tr>
+                            <td>訪問着</td>
+                            <td class="price">¥3,500</td>
+                            <td>8日</td>
+                        </tr>
+                        <tr>
+                            <td>袴（ウール）</td>
+                            <td class="price">¥2,800</td>
+                            <td>7日</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 宅配サービス -->
+            <div class="delivery-info">
+                <div class="icon">🚚</div>
+                <h3>宅配クリーニングサービス</h3>
+                <p style="text-align: center; margin-bottom: 1.5rem;">
+                    忙しくてクリーニング店に行けない方、じゅうたんや布団など大きなものが運べない方へ
+                </p>
+                <div class="delivery-details">
+                    <div>
+                        <h4>📍 配達エリア</h4>
+                        <p>犀川以南、手取川以北</p>
+                        <p>企業様、個人様、お気軽にお問い合わせください</p>
+                    </div>
+                    <div>
+                        <h4>💰 配達料金</h4>
+                        <p>往復 500円（税込）</p>
+                        <p>※3,000円以上のご利用で配達料無料</p>
+                        <p>※日曜定休日</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- お問い合わせ -->
+            <div class="quick-contact">
+                <h3>お見積り・ご相談はお気軽に</h3>
+                <p>特殊素材や大型商品など、料金表にない品物もお気軽にご相談ください。<br>
+                経験豊富なスタッフが丁寧にお答えいたします。</p>
+                <div class="contact-buttons">
+                    <a href="tel:276-2402" class="contact-btn phone">
+                        📞 電話で相談
+                    </a>
+                    <a href="#stores" class="contact-btn">
+                        🏪 店舗を探す
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>
+                    <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <span style="width: 30px; height: 30px; background: #18b4c4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem;">✨</span>
+                        宮崎クリーニング社
+                    </span>
+                </h3>
+                <p>〒924-0000<br>
+                石川県白山市徳丸町427-1<br>
+                TEL: 276-2402<br>
+                営業: 平日・土曜 7:30-19:00（日祝定休）</p>
+            </div>
+            <div class="footer-section">
+                <h3>サービス</h3>
+                <p><a href="#services">ドライクリーニング</a><br>
+                <a href="#services">ワイシャツクリーニング</a><br>
+                <a href="#services">布団クリーニング</a><br>
+                <a href="#services">革製品クリーニング</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>お客様サポート</h3>
+                <p><a href="#faq">よくある質問</a><br>
+                <a href="#prices">料金表</a><br>
+                <a href="#news">お知らせ</a><br>
+                お問い合わせ<br>
+                クリーニング事故賠償保険加入店</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 宮崎クリーニング社. All rights reserved. | 全国クリーニング生活衛生同業組合連合会加盟店</p>
+        </div>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ページ読み込み時のアニメーション
+        window.addEventListener('load', function() {
+            const categories = document.querySelectorAll('.price-category');
+            categories.forEach((category, index) => {
+                category.style.opacity = '0';
+                category.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    category.style.transition = 'all 0.6s ease';
+                    category.style.opacity = '1';
+                    category.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // テーブル行のハイライト効果
+        document.querySelectorAll('.price-table tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.transition = 'transform 0.2s ease';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
