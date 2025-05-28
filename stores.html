@@ -855,13 +855,13 @@
                 const href = this.getAttribute('href');
                 // ハッシュのみの場合（ページ内リンク）のみ処理
                 if (href.startsWith('#')) {
-                    e.preventDefault();
+                e.preventDefault();
                     const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                     }
                 }
             });

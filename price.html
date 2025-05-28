@@ -442,6 +442,91 @@
                 padding: 2.5rem 0;
             }
         }
+
+        .delivery-service {
+            background: #f8fdff;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+            border: 2px solid #64877b;
+        }
+
+        .delivery-service h3 {
+            color: #64877b;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .delivery-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .delivery-point {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .delivery-point i {
+            font-size: 2rem;
+            color: #64877b;
+            margin-bottom: 1rem;
+        }
+
+        .delivery-point h4 {
+            color: #64877b;
+            margin-bottom: 0.5rem;
+        }
+
+        .delivery-point p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .estimate-section {
+            background: #f8fdff;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            border: 2px solid #64877b;
+        }
+
+        .estimate-section h3 {
+            color: #64877b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .estimate-section p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #64877b;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: #557a6e;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -765,40 +850,32 @@
             </div>
 
             <!-- 宅配サービス -->
-            <div class="delivery-info">
-                <div class="icon">🚚</div>
+            <div class="delivery-service">
                 <h3>宅配クリーニングサービス</h3>
-                <p style="text-align: center; margin-bottom: 1.5rem;">
-                    忙しくてクリーニング店に行けない方、じゅうたんや布団など大きなものが運べない方へ
-                </p>
-                <div class="delivery-details">
-                    <div>
-                        <h4>📍 配達エリア</h4>
-                        <p>犀川以南、手取川以北</p>
-                        <p>企業様、個人様、お気軽にお問い合わせください</p>
+                <div class="delivery-points">
+                    <div class="delivery-point">
+                        <i>🚚</i>
+                        <h4>配達エリア</h4>
+                        <p>犀川以南、手取川以北の地域<br>（白山市・野々市市の一部）</p>
                     </div>
-                    <div>
-                        <h4>💰 配達料金</h4>
-                        <p>往復 500円（税込）</p>
-                        <p>※3,000円以上のご利用で配達料無料</p>
-                        <p>※日曜定休日</p>
+                    <div class="delivery-point">
+                        <i>💰</i>
+                        <h4>配達料金</h4>
+                        <p>往復500円（税込）<br>3,000円以上のご利用で無料！</p>
+                    </div>
+                    <div class="delivery-point">
+                        <i>📅</i>
+                        <h4>受付・配達</h4>
+                        <p>平日9:00-17:00<br>（時間指定可能）</p>
                     </div>
                 </div>
             </div>
 
             <!-- お問い合わせ -->
-            <div class="quick-contact">
-                <h3>お見積り・ご相談はお気軽に</h3>
-                <p>特殊素材や大型商品など、料金表にない品物もお気軽にご相談ください。<br>
-                経験豊富なスタッフが丁寧にお答えいたします。</p>
-                <div class="contact-buttons">
-                    <a href="tel:276-2402" class="contact-btn phone">
-                        📞 電話で相談
-                    </a>
-                    <a href="#stores" class="contact-btn">
-                        🏪 店舗を探す
-                    </a>
-                </div>
+            <div class="estimate-section">
+                <h3>お見積り・ご相談</h3>
+                <p>特殊なクリーニングや大量の衣類のご相談など、お気軽にお問い合わせください。</p>
+                <a href="tel:076-276-2402" class="contact-btn">📞 電話で相談する</a>
             </div>
         </div>
     </section>

@@ -175,27 +175,26 @@
 
         .category-nav {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
             flex-wrap: wrap;
+            gap: 1rem;
             margin-bottom: 3rem;
+            justify-content: center;
         }
 
         .category-btn {
-            background: white;
-            color: #18b4c4;
-            border: 2px solid #18b4c4;
             padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid #64877b;
+            color: #64877b;
             border-radius: 25px;
             text-decoration: none;
-            font-weight: 500;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         .category-btn:hover, .category-btn.active {
-            background: #18b4c4;
+            background: #64877b;
             color: white;
-            transform: translateY(-2px);
         }
 
         .faq-category {
@@ -203,28 +202,43 @@
         }
 
         .category-title {
+            color: #64877b;
             font-size: 1.8rem;
-            color: #18b4c4;
             margin-bottom: 2rem;
-            text-align: center;
-            font-weight: 600;
-            position: relative;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #64877b;
         }
 
-        .category-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: #18b4c4;
-            border-radius: 2px;
+        .question-icon, .answer-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #64877b;
+            color: white;
+            border-radius: 50%;
+            margin-right: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .answer-content {
+            display: flex;
+            align-items: flex-start;
+            background: #f8fdff;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .answer-content div {
+            flex: 1;
         }
 
         .faq-list {
             list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .faq-item {
@@ -256,24 +270,6 @@
 
         .faq-question:hover {
             background: #f8fdff;
-        }
-
-        .question-icon {
-            background: #18b4c4;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9rem;
-            min-width: 30px;
-        }
-
-        .question-text {
-            flex: 1;
         }
 
         .toggle-icon {
@@ -311,71 +307,48 @@
             }
         }
 
-        .answer-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .answer-icon {
-            background: #18b4c4;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9rem;
-            min-width: 30px;
-            margin-top: 0.2rem;
-        }
-
         .contact-cta {
-            background: linear-gradient(135deg, #18b4c4, #169fb0);
-            color: white;
-            border-radius: 15px;
-            padding: 2rem;
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: #f8fdff;
+            border-radius: 15px;
+            border: 2px solid #64877b;
         }
 
         .contact-cta h3 {
-            font-size: 1.8rem;
+            color: #64877b;
             margin-bottom: 1rem;
-            font-weight: 600;
+            font-size: 1.8rem;
         }
 
         .contact-cta p {
+            color: #666;
             margin-bottom: 2rem;
-            font-size: 1.1rem;
-            opacity: 0.9;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1rem;
             justify-content: center;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .cta-btn {
-            background: white;
-            color: #18b4c4;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            background: #64877b;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
         .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+            background: #557a6e;
+            transform: translateY(-2px);
         }
 
         .popular-questions {
@@ -415,7 +388,7 @@
         }
 
         footer {
-            background: #333;
+            background: #64877b;
             color: white;
             padding: 3rem 0 1rem;
         }
@@ -431,7 +404,7 @@
 
         .footer-section h3 {
             margin-bottom: 1rem;
-            color: #18b4c4;
+            color: white;
             font-weight: 600;
         }
 
@@ -442,7 +415,7 @@
         }
 
         .footer-section a:hover {
-            color: #18b4c4;
+            color: white;
         }
 
         .footer-bottom {
@@ -488,7 +461,11 @@
 
             .category-nav {
                 flex-direction: column;
-                align-items: center;
+                align-items: stretch;
+            }
+
+            .category-btn {
+                text-align: center;
             }
 
             .popular-list {
@@ -546,6 +523,18 @@
                 padding: 2.5rem 0;
             }
         }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #64877b;
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
@@ -583,23 +572,6 @@
 
     <section class="section">
         <div class="container">
-            <div class="search-section">
-                <div class="search-box">
-                    <input type="text" class="search-input" placeholder="知りたいことを検索してください..." id="searchInput">
-                    <button class="search-btn" onclick="searchFAQ()">🔍 検索</button>
-                </div>
-            </div>
-
-            <div class="popular-questions">
-                <h3>🔥 人気の質問</h3>
-                <ul class="popular-list">
-                    <li class="popular-item" onclick="scrollToFAQ('料金')">料金・支払い方法について</li>
-                    <li class="popular-item" onclick="scrollToFAQ('納期')">仕上がり・納期について</li>
-                    <li class="popular-item" onclick="scrollToFAQ('シミ')">シミ抜きサービス</li>
-                    <li class="popular-item" onclick="scrollToFAQ('宅配')">宅配・集配サービス</li>
-                </ul>
-            </div>
-
             <div class="category-nav">
                 <a href="#general" class="category-btn active" onclick="showCategory('general')">基本サービス</a>
                 <a href="#pricing" class="category-btn" onclick="showCategory('pricing')">料金・支払い</a>
@@ -639,7 +611,7 @@
                             <div class="answer-content">
                                 <span class="answer-icon">A</span>
                                 <div>
-                                    白山・金沢の全5店舗で同じ品質のクリーニングサービスをご提供しています。ただし、営業時間や一部の取扱いサービスが店舗により異なる場合がありますので、詳しくは各店舗にお問い合わせください。
+                                    白山・金沢の全6店舗で同じ品質のクリーニングサービスをご提供しています。ただし、営業時間や一部の取扱いサービスが店舗により異なる場合がありますので、詳しくは各店舗にお問い合わせください。
                                 </div>
                             </div>
                         </div>
@@ -890,7 +862,7 @@
                 <p>お気軽にお問い合わせください。専門スタッフが丁寧にお答えいたします。</p>
                 <div class="cta-buttons">
                     <a href="tel:076-276-2402" class="cta-btn">📞 電話で相談</a>
-                    <a href="mailto:dddoublelari@gmail.com?subject=宮崎クリーニング社へのお問い合わせ&body=お問い合わせ内容をご記入ください。%0D%0A%0D%0A【お客様情報】%0D%0Aお名前：%0D%0A電話番号：%0D%0Aご利用予定店舗：%0D%0A%0D%0A【お問い合わせ内容】%0D%0A" class="cta-btn">✉️ お問い合わせフォーム</a>
+                    <a href="mailto:info@miyazaki-cleaning.com" class="cta-btn">✉️ メールで相談</a>
                     <a href="stores.html" class="cta-btn">🏪 店舗を探す</a>
                 </div>
             </div>
@@ -936,12 +908,14 @@
                 category.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
                 category.querySelectorAll('.faq-answer').forEach(a => {
                     a.classList.remove('active');
+                    a.style.display = 'none';
                 });
                 
                 // クリックしたFAQが閉じていた場合は開く
                 if (!isActive) {
                     this.classList.add('active');
                     answer.classList.add('active');
+                    answer.style.display = 'block';
                 }
             });
         });
@@ -952,77 +926,16 @@
             document.querySelectorAll('.faq-category').forEach(cat => {
                 cat.style.display = 'none';
             });
-            
+
             // 選択されたカテゴリを表示
             document.getElementById(categoryId).style.display = 'block';
-            
+
             // ボタンのアクティブ状態を更新
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
         }
-
-        // 検索機能
-        function searchFAQ() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            if (searchTerm === '') {
-                // 検索語が空の場合、全て表示
-                faqItems.forEach(item => {
-                    item.style.display = 'block';
-                });
-                return;
-            }
-            
-            let hasResults = false;
-            faqItems.forEach(item => {
-                const questionText = item.querySelector('.question-text').textContent.toLowerCase();
-                const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
-                
-                if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
-                    item.style.display = 'block';
-                    hasResults = true;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            
-            // 全カテゴリを表示（検索結果表示のため）
-            if (hasResults) {
-                document.querySelectorAll('.faq-category').forEach(cat => {
-                    cat.style.display = 'block';
-                });
-            }
-        }
-
-        // エンターキーで検索
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchFAQ();
-            }
-        });
-
-        // 人気の質問をクリックした時の動作
-        function scrollToFAQ(keyword) {
-            document.getElementById('searchInput').value = keyword;
-            searchFAQ();
-        }
-
-        // スムーススクロール
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
     </script>
 </body>
 </html>

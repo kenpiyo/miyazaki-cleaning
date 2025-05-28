@@ -307,31 +307,43 @@
         }
 
         .coin-laundry {
-            background: linear-gradient(135deg, #ff6b6b, #ff5252);
-            color: white;
+            background: #ffffff;
             border-radius: 15px;
             padding: 2rem;
-            margin-top: 3rem;
-            text-align: center;
+            box-shadow: 0 5px 20px rgba(100, 135, 123, 0.1);
+            border: 2px solid #64877b;
         }
 
         .coin-laundry h3 {
+            color: #64877b;
             font-size: 2rem;
             margin-bottom: 1rem;
-            font-weight: 700;
+            text-align: center;
+        }
+
+        .coin-laundry p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
         }
 
         .coin-laundry-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+        }
+
+        .laundry-section {
+            background: #f8fdff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #64877b;
         }
 
         .laundry-section h4 {
-            font-weight: 600;
+            color: #64877b;
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .laundry-items {
@@ -341,30 +353,30 @@
         }
 
         .laundry-item {
-            background: rgba(255,255,255,0.2);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
+            background: #64877b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             font-size: 0.9rem;
         }
 
         .warning-note {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
+            background: #fff8f8;
+            border: 2px solid #64877b;
             border-radius: 10px;
             padding: 1.5rem;
             margin-top: 2rem;
-            text-align: center;
         }
 
         .warning-note h4 {
-            color: #856404;
+            color: #64877b;
             margin-bottom: 1rem;
-            font-weight: 600;
         }
 
         .warning-note p {
-            color: #856404;
-            line-height: 1.6;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.8;
         }
 
         footer {
@@ -816,13 +828,13 @@
                 const href = this.getAttribute('href');
                 // ハッシュのみの場合（ページ内リンク）のみ処理
                 if (href.startsWith('#')) {
-                    e.preventDefault();
+                e.preventDefault();
                     const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                     }
                 }
             });
