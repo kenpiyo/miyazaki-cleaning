@@ -18,7 +18,7 @@
             font-family: 'Noto Sans JP', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'メイリオ', sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #F2F2F2;
+            background-color: #ffffff;
         }
 
         header {
@@ -86,7 +86,7 @@
         }
 
         .nav-content a:hover, .nav-content a.active {
-            background-color: #f8fdff;
+            background-color: #f8f9fa;
             color: #64877b;
             border-bottom: 3px solid #64877b;
         }
@@ -121,7 +121,7 @@
         }
 
         .section:nth-child(even) {
-            background-color: #fafffe;
+            background-color: #f8f9fa;
         }
 
         .search-section {
@@ -198,113 +198,81 @@
         }
 
         .faq-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(100, 135, 123, 0.1);
             margin-bottom: 3rem;
         }
 
-        .category-title {
+        .faq-category h2 {
             color: #64877b;
             font-size: 1.8rem;
             margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #64877b;
+            text-align: center;
+            position: relative;
         }
 
-        .question-icon, .answer-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
+        .faq-category h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
             background: #64877b;
-            color: white;
-            border-radius: 50%;
-            margin-right: 1rem;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .answer-content {
-            display: flex;
-            align-items: flex-start;
-            background: #f8fdff;
-            padding: 1.5rem;
-            border-radius: 10px;
-        }
-
-        .answer-content div {
-            flex: 1;
-        }
-
-        .faq-list {
-            list-style: none;
-            max-width: 800px;
-            margin: 0 auto;
+            border-radius: 2px;
         }
 
         .faq-item {
-            background: #ffffff;
+            background: #f8f9fa;
+            border-radius: 10px;
             margin-bottom: 1rem;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border: 2px solid #647887;
+            border: 1px solid #e0e0e0;
             overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            border-color: #18b4c4;
         }
 
         .faq-question {
             padding: 1.5rem;
             cursor: pointer;
-            font-weight: 600;
-            color: #647887;
             position: relative;
-            background: white;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #333;
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
-        .faq-question:hover {
-            background: #f8fdff;
-        }
-
-        .toggle-icon {
-            font-size: 1.5rem;
-            color: #18b4c4;
-            transition: transform 0.3s ease;
-            min-width: 20px;
-        }
-
-        .faq-question.active .toggle-icon {
-            transform: rotate(45deg);
+        .faq-question .icon {
+            background: #64877b;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
         }
 
         .faq-answer {
-            padding: 0 1.5rem 1.5rem;
+            background: white;
+            padding: 1.5rem;
             color: #666;
             display: none;
-            background: #f8fdff;
-            line-height: 1.8;
+            border-top: 1px solid #e0e0e0;
         }
 
         .faq-answer.active {
             display: block;
-            animation: slideDown 0.3s ease;
+            animation: fadeIn 0.3s ease;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                max-height: 0;
-            }
-            to {
-                opacity: 1;
-                max-height: 200px;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .contact-cta {
@@ -404,7 +372,7 @@
 
         .footer-section h3 {
             margin-bottom: 1rem;
-            color: white;
+            color: #ffffff;
             font-weight: 600;
         }
 
@@ -415,15 +383,15 @@
         }
 
         .footer-section a:hover {
-            color: white;
+            color: #ffffff;
         }
 
         .footer-bottom {
             text-align: center;
             padding: 2rem 0;
-            border-top: 1px solid #555;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             margin-top: 2rem;
-            color: #999;
+            color: #ccc;
         }
 
         @media (max-width: 768px) {
@@ -573,288 +541,175 @@
     <section class="section">
         <div class="container">
             <div class="category-nav">
-                <a href="#general" class="category-btn active" onclick="showCategory('general')">基本サービス</a>
-                <a href="#pricing" class="category-btn" onclick="showCategory('pricing')">料金・支払い</a>
-                <a href="#delivery" class="category-btn" onclick="showCategory('delivery')">納期・受取</a>
-                <a href="#special" class="category-btn" onclick="showCategory('special')">特殊サービス</a>
-                <a href="#technical" class="category-btn" onclick="showCategory('technical')">技術・品質</a>
+                <a href="#basic" class="category-btn active">基本サービス</a>
+                <a href="#price" class="category-btn">料金・支払い</a>
+                <a href="#delivery" class="category-btn">納期・受取</a>
+                <a href="#special" class="category-btn">特殊サービス</a>
+                <a href="#quality" class="category-btn">技術・品質</a>
             </div>
 
-            <!-- 基本サービス -->
-            <div class="faq-category" id="general">
-                <h2 class="category-title">基本サービスについて</h2>
-                <ul class="faq-list">
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">営業時間を教えてください</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    <strong>本社工場：</strong>平日・土曜 7:30-19:00、祝日日曜 7:30-18:00<br>
-                                    <strong>千代野店：</strong>5:00-24:00（ほぼ24時間営業）<br>
-                                    各店舗により営業時間が異なります。詳しくは店舗一覧ページをご確認ください。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">どの店舗でも同じサービスを受けられますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    白山・金沢の全6店舗で同じ品質のクリーニングサービスをご提供しています。ただし、営業時間や一部の取扱いサービスが店舗により異なる場合がありますので、詳しくは各店舗にお問い合わせください。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">初回利用時に必要なものはありますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    特別な手続きは不要です。お名前とお電話番号をお伺いするだけで、すぐにご利用いただけます。会員登録をされると、お得なサービスやキャンペーン情報をお送りできます。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div id="basic" class="faq-category">
+                <h2>基本サービスについて</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>朝出したらいつ仕上がりますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        午前10時までにお預かりした品物は翌日の午後5時に仕上がります。ただし、特殊加工や修理が必要な場合は別途日数をいただく場合があります。店舗により営業時間が異なりますので、各店舗にお確認ください。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>どの店舗でも同じサービスを受けられますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        白山・金沢の全6店舗で同じ品質のクリーニングサービスをご提供しています。ただし、営業時間や一部の取扱いサービスが店舗により異なる場合がありますので、詳しくは各店舗にお問い合わせください。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>初回利用時に必要なものはありますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        特別な手続きは不要です。お名前とお電話番号をお伺いするだけで、すぐにご利用いただけます。会員登録をされると、お得なサービスやキャンペーン情報をお送りできます。
+                    </div>
+                </div>
             </div>
 
-            <!-- 料金・支払い -->
-            <div class="faq-category" id="pricing" style="display: none;">
-                <h2 class="category-title">料金・支払いについて</h2>
-                <ul class="faq-list">
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">支払い方法は何がありますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    現金の他、各種クレジットカード、電子マネー、QRコード決済もご利用いただけます。詳しくは各店舗でお尋ねください。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">料金はいつ支払いますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    お預かり時にお支払いいただく前払い制です。料金はお預かり時に確定し、お会計をさせていただきます。お引き取り時の追加料金は基本的にございません。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">シミ抜きは有料ですか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    基本的なシミ抜きは無料サービスです。ただし、特殊なシミや時間の経過したシミ、薬剤を使う手間のかかるシミの場合は有料（1箇所300円〜）となります。事前にご相談させていただきます。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">割引やキャンペーンはありますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    春と秋の年2回、お得なご優待サービスを実施しております。また、Yシャツ10枚以上で特別料金、宅配サービス3,000円以上で配達料無料など、各種サービスをご用意しています。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div id="price" class="faq-category" style="display: none;">
+                <h2>料金・支払いについて</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>クレジットカードは使えますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        はい、各種クレジットカード、電子マネー、QRコード決済をご利用いただけます。詳しくは各店舗でお尋ねください。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>料金はいつ支払いますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        お預かり時にお支払いいただく前払い制です。料金はお預かり時に確定し、お会計をさせていただきます。お引き取り時の追加料金は基本的にございません。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>シミ抜きは有料ですか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        基本的なシミ抜きは無料サービスです。ただし、特殊なシミや時間の経過したシミ、薬剤を使う手間のかかるシミの場合は有料（1箇所300円〜）となります。事前にご相談させていただきます。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>割引やキャンペーンはありますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        春と秋の年2回、お得なご優待サービスを実施しております。また、Yシャツ10枚以上で特別料金、宅配サービス3,000円以上で配達料無料など、各種サービスをご用意しています。
+                    </div>
+                </div>
             </div>
 
-            <!-- 納期・受取 -->
-            <div class="faq-category" id="delivery" style="display: none;">
-                <h2 class="category-title">納期・受取について</h2>
-                <ul class="faq-list">
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">朝出したらいつ仕上がりますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    午前10時までにお預かりした品物は翌日の午後5時に仕上がります。ただし、特殊加工や修理が必要な場合は別途日数をいただく場合があります。店舗により営業時間が異なりますので、詳細は各店舗にお確認ください。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">仕上がり予定日を過ぎてしまった場合は？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    お預かり期間に制限はございませんので、ご都合の良い時にお引き取りください。ただし、3ヶ月以上経過した場合は、保管場所の都合上、ご連絡させていただく場合があります。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">宅配サービスはありますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    配達エリア（犀川以南、手取川以北）にて宅配サービスを行っています。配達料金は往復500円（税込）ですが、3,000円以上のご利用で配達料無料となります。企業様・個人様問わずご利用いただけます。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div id="delivery" class="faq-category" style="display: none;">
+                <h2>納期・受取について</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>朝出したらいつ仕上がりますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        午前10時までにお預かりした品物は翌日の午後5時に仕上がります。ただし、特殊加工や修理が必要な場合は別途日数をいただく場合があります。店舗により営業時間が異なりますので、各店舗にお確認ください。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>仕上がり予定日を過ぎてしまった場合は？</div>
+                    </div>
+                    <div class="faq-answer">
+                        お預かり期間に制限はございませんので、ご都合の良い時にお引き取りください。ただし、3ヶ月以上経過した場合は、保管場所の都合上、ご連絡させていただく場合があります。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>宅配サービスは利用できますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        はい、一定エリア内であれば宅配サービスをご利用いただけます。3,000円以上のご利用で配達料金が無料になります。詳しくは各店舗にお問い合わせください。
+                    </div>
+                </div>
             </div>
 
-            <!-- 特殊サービス -->
-            <div class="faq-category" id="special" style="display: none;">
-                <h2 class="category-title">特殊サービスについて</h2>
-                <ul class="faq-list">
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">チャイルドシートのクリーニングはどのくらい時間がかかりますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    チャイルドシートクリーニングは分解・洗浄・抗菌処理を行うため、通常1週間程度お時間をいただいています。お急ぎの場合はご相談ください。代替シートの貸し出しは行っておりませんので、予めご了承ください。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">ぬいぐるみクリーニングで注意することはありますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    電子部品が内蔵されているもの、接着剤で付けられた装飾品が多いもの、毛足が長く絡まりやすいものはお受けできない場合があります。お預かり前に必ず確認させていただきます。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">防虫・防ダニ加工の効果はどのくらい持続しますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    加工の効果は約6ヶ月〜1年程度持続します。着用頻度や保管環境により効果期間は変わります。定期的な再加工をおすすめしています。効果について不安な場合は、再加工のタイミングをご相談ください。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div id="special" class="faq-category" style="display: none;">
+                <h2>特殊サービスについて</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>チャイルドシートのクリーニングはどのくらい時間がかかりますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        チャイルドシートクリーニングは分解・洗浄・抗菌処理を行うため、通常1週間程度お時間をいただいています。お急ぎの場合はご相談ください。代替シートの貸し出しは行っておりませんので、予めご了承ください。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>ぬいぐるみクリーニングで注意することはありますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        電子部品が内蔵されているもの、接着剤で付けられた装飾品が多いもの、毛足が長く絡まりやすいものはお受けできない場合があります。お預かり前に必ず確認させていただきます。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>防虫・防ダニ加工の効果はどのくらい持続しますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        加工の効果は約6ヶ月〜1年程度持続します。着用頻度や保管環境により効果期間は変わります。定期的な再加工をおすすめしています。効果について不安な場合は、再加工のタイミングをご相談ください。
+                    </div>
+                </div>
             </div>
 
-            <!-- 技術・品質 -->
-            <div class="faq-category" id="technical" style="display: none;">
-                <h2 class="category-title">技術・品質について</h2>
-                <ul class="faq-list">
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">ドライクリーニングとは何ですか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    水を使わず、石油系溶剤やパークロロエチレンなどの有機溶剤を使用する洗浄方法です。油汚れを効果的に落とし、型崩れや収縮を防ぎます。デリケートな素材や型崩れしやすい衣類に適しています。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">クリーニングできない衣類はありますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    汚れや破れがひどいもの、接着剤や塗料が付着したもの、装飾品が多数ついているもの、皮革・毛皮で損傷が激しいものなどはお受けできない場合があります。判断が難しい場合は事前にご相談ください。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span class="question-icon">Q</span>
-                            <span class="question-text">万が一事故があった場合の補償はありますか？</span>
-                            <span class="toggle-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="answer-content">
-                                <span class="answer-icon">A</span>
-                                <div>
-                                    当社は全国クリーニング生活衛生同業組合連合会加盟店として、クリーニング事故賠償保険に加入しております。万が一の事故の際は、適切な補償をさせていただきます。事故防止のため、お預かり時に入念な確認を行っています。
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div id="quality" class="faq-category" style="display: none;">
+                <h2>技術・品質について</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>ドライクリーニングとは何ですか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        水を使わず、石油系溶剤やパークロロエチレンなどの有機溶剤を使用する洗浄方法です。油汚れを効果的に落とし、型崩れや収縮を防ぎます。デリケートな素材や型崩れしやすい衣類に適しています。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>クリーニングできない衣類はありますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        汚れや破れがひどいもの、接着剤や塗料が付着したもの、装飾品が多数ついているもの、皮革・毛皮で損傷が激しいものなどはお受けできない場合があります。判断が難しい場合は事前にご相談ください。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q</span>
+                        <div>万が一事故があった場合の補償はありますか？</div>
+                    </div>
+                    <div class="faq-answer">
+                        当社は全国クリーニング生活衛生同業組合連合会加盟店として、クリーニング事故賠償保険に加入しております。万が一の事故の際は、適切な補償をさせていただきます。事故防止のため、お預かり時に入念な確認を行っています。
+                    </div>
+                </div>
             </div>
 
             <div class="contact-cta">
@@ -897,45 +752,51 @@
     </footer>
 
     <script>
-        // FAQ機能
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const answer = this.nextElementSibling;
-                const isActive = this.classList.contains('active');
-                
-                // 同じカテゴリ内の他のFAQを閉じる
-                const category = this.closest('.faq-category');
-                category.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
-                category.querySelectorAll('.faq-answer').forEach(a => {
-                    a.classList.remove('active');
-                    a.style.display = 'none';
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const categories = document.querySelectorAll('.faq-category');
+            const questions = document.querySelectorAll('.faq-question');
+
+            // カテゴリー切り替え
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = btn.getAttribute('href').slice(1);
+
+                    // ボタンのアクティブ状態を更新
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    // カテゴリーの表示を切り替え
+                    categories.forEach(category => {
+                        if (category.id === targetId) {
+                            category.style.display = 'block';
+                            category.style.animation = 'fadeIn 0.3s ease';
+                        } else {
+                            category.style.display = 'none';
+                        }
+                    });
                 });
-                
-                // クリックしたFAQが閉じていた場合は開く
-                if (!isActive) {
-                    this.classList.add('active');
-                    answer.classList.add('active');
-                    answer.style.display = 'block';
-                }
+            });
+
+            // Q&Aの開閉
+            questions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isOpen = answer.classList.contains('active');
+
+                    // 他の回答を閉じる
+                    document.querySelectorAll('.faq-answer.active').forEach(a => {
+                        if (a !== answer) {
+                            a.classList.remove('active');
+                        }
+                    });
+
+                    // クリックされた回答の表示を切り替え
+                    answer.classList.toggle('active');
+                });
             });
         });
-
-        // カテゴリ切り替え
-        function showCategory(categoryId) {
-            // 全カテゴリを非表示
-            document.querySelectorAll('.faq-category').forEach(cat => {
-                cat.style.display = 'none';
-            });
-
-            // 選択されたカテゴリを表示
-            document.getElementById(categoryId).style.display = 'block';
-
-            // ボタンのアクティブ状態を更新
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
     </script>
 </body>
 </html>
